@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.horselinc">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-feature
+            android:name="android.hardware.fingerprint"
+            android:required="false" />
+
+    <application
+            android:name=".App"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:largeHeap="true"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true"
+            tools:ignore="GoogleAppIndexingWarning,RtlEnabled"
+            tools:targetApi="m">
+        <activity android:name=".views.activities.HLInstantPayoutActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/DarkActionBarTheme"
+                android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name=".views.activities.HLSearchHorseActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLSearchServiceShowActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/DarkActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLCalendarActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/DarkActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLMainActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".views.activities.HLSplashActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Branch URI scheme -->
+            <intent-filter>
+                <data
+                        android:host="open"
+                        android:scheme="horselinc" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+            <!-- Branch App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                        android:host="horselinc.app.link"
+                        android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".views.activities.HLSearchUserActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/DarkActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLAddStripeAccountActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/DarkActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLIntroActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLAuthActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme"
+                android:windowSoftInputMode="adjustPan" />
+        <activity
+                android:name=".views.activities.HLUserRoleActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme"
+                android:windowSoftInputMode="adjustPan" />
+        <activity
+                android:name="com.yalantis.ucrop.UCropActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoActionBarTheme" />
+        <activity
+                android:name=".views.activities.HLHorseManagerMainActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+                android:name=".views.activities.HLServiceProviderMainActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <service
+                android:name=".firebase.HLFirebaseMessagingService"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="com.horselinc.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths" />
+        </provider> <!-- Branch init -->
+        <meta-data
+                android:name="io.branch.sdk.BranchKey"
+                android:value="@string/branch_key" />
+        <meta-data
+                android:name="io.branch.sdk.BranchKey.test"
+                android:value="@string/branch_test_key" /> <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
+        <meta-data
+                android:name="io.branch.sdk.TestMode"
+                android:value="false" /> <!-- Branch install referrer tracking -->
+        <receiver
+                android:name="io.branch.referral.InstallListener"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <receiver
+                android:name=".utils.NetworkChangeReceiver"
+                android:label="NetworkChangeReceiver">
+            <intent-filter>
+                <action
+                        android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                        tools:ignore="BatteryLife" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

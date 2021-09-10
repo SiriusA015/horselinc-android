@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "306826103314",
+    "firebase_url": "https://horselinc-5b153.firebaseio.com",
+    "project_id": "horselinc-5b153",
+    "storage_bucket": "horselinc-5b153.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306826103314:android:86f716e039214960",
+        "android_client_info": {
+          "package_name": "com.HorseLinc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306826103314-544grq4k02rpru2mlcobhmrt90u91svn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.HorseLinc",
+            "certificate_hash": "5198a70453ac0d98893f9d0f2a137945e8c101e3"
+          }
+        },
+        {
+          "client_id": "306826103314-27l7hmalm893ccjerlf13032t9pd2cm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzVfneSCN3NqkoTLxV27q5S2uMdHBKTSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306826103314-27l7hmalm893ccjerlf13032t9pd2cm9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "306826103314-h5u7cdebd125cfq1c5qeda4coek3e2hq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.HorseLinc",
+                "app_store_id": "1347325341"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
